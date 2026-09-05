@@ -50,7 +50,7 @@ Python.
     beef04b 2013-10-15 09:33:53 +0530
 
 Just a few hours later I committed the
-[first version of the code](https://github.com/shreevatsa/sanskrit/blob/beef04b5417057bf62acc411ea3a200adfe607fe/sscan.py)
+first version of the code
 to the Git repository. It was called `sscan.py` (the inspiration from the Perl
 script `sscan` is evident!), stood at 50 lines long, and did one simple thing:
 it took lines in HK, and replaced them with a pattern of "-"s and "u"s, standing
@@ -121,7 +121,7 @@ the text, so what was intended to be mere testing very quickly morphed into a
 subproject to fix the errors in that particular GRETIL text of the Meghadūta.
 
 In all, the program found
-[23 errors](https://github.com/shreevatsa/sanskrit/blob/f2ef736466021b785461fc4dc11f04480e74d7fd/meghdk_u_errors.txt)
+23 errors
 in the 100-odd verses: and these were metrical errors alone!
 
     b1e88dc 2013-10-16 21:51:28 +0530 Add meghdk_hk.txt (transliterated from GRETIL)
@@ -176,7 +176,7 @@ list of known metres, and if so, which.
           metre = known_metre
 
 The
-[version at this point](https://github.com/shreevatsa/sanskrit/blob/b194fa36476340006ad8dd24144b318a9b372639/sscan.py)
+version at this point
 (early on 2013-10-20) had only one metre; I set about adding more.
 
 # Identifying metres vs identifying pattern
