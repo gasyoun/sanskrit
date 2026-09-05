@@ -1,3 +1,5 @@
+_Created: 02-01-2015 · Last updated: 05-09-2026_
+
 (A retrospective history of the project, being written in early 2015.)
 
 # Background: before the first commit
@@ -10,7 +12,7 @@ It [takes input in Harvard-Kyoto transliteration](http://sanskrit.sai.uni-heidel
 and produces output as in the following screenshot (I have re-entered the input
 in the box, for illustration).
 
-![Screenshot of Heidelberg Sanskrit Metre Recognizer](Screenshot-Heidelberg.png)
+![Screenshot of Heidelberg Sanskrit Metre Recognizer](https://github.com/gasyoun/sanskrit/blob/master/history/Screenshot-Heidelberg.png)
 
 I found it very useful, but note some obvious deficiencies (which I'll revisit later):
 
@@ -817,3 +819,5 @@ Complete history of all 515 commits pre-2015:
     2f1c1bc 2014-07-31 18:56:06 +0530
     82f705b 2014-08-01 00:46:43 +0530
     a98ea75 2014-08-22 22:53:03 +0530
+
+_Dr. Mārcis Gasūns_
