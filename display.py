@@ -1,6 +1,8 @@
 """Align a verse to a given metre."""
 
 
+import html
+
 import slp1
 from transliteration import transliterate
 
@@ -129,7 +131,12 @@ def AlignVerseToMetre(display_verse, verse_pattern, metre_pattern_lines):
 
 
 def HtmlTableFromAlignment(alignment):
-  """Make a pretty HTML table out of the alignment."""
+  """Make a pretty HTML table out of the alignment.
+
+  The only user-derived content in this HTML is the syllable text (it comes
+  from the verse the user POSTed) — escape it, so that the browser can keep
+  rendering this with innerHTML while only server-authored markup survives.
+  """
   out = []
   for line in alignment:
     v = ''
@@ -138,9 +145,13 @@ def HtmlTableFromAlignment(alignment):
         printable_syllable = '[-]'
       else:
         printable_syllable = transliterate.TransliterateForTable(syllable[0])
-      to_print = (printable_syllable if syllable[1] == syllable[2] else
-                  '<abbr title="Should be %s">%s</abbr>' % (syllable[2],
-                                                            printable_syllable))
-      v += '<span class="syl%s">%s</span>' % (syllable[1], to_print)
+      if syllable[1] == syllable[2]:
+        to_print = html.escape(printable_syllable)
+      else:
+        to_print = ('<abbr title="Should be %s">%s</abbr>' %
+                    (html.escape(str(syllable[2])),
+                     html.escape(printable_syllable)))
+      v += '<span class="syl%s">%s</span>' % (html.escape(str(syllable[1])),
+                                              to_print)
     out.append('%s <br/>\n' % v)
   return out
