@@ -130,15 +130,21 @@ async function makeMetricalAnalysis(res) {
     let metreNameDiv = document.createElement('div');
     v.appendChild(metreNameDiv);
     if (metreName) {
-	metreNameDiv.outerHTML = `<div class="metreName alert ` + (res.result.is_perfect ? 'alert-success' : 'alert-danger') + `" role="alert">` + (isPerfect ? '' : 'possibly ') + metreName + `</div>`;
+	metreNameDiv.className = 'metreName alert ' + (isPerfect ? 'alert-success' : 'alert-danger');
+	metreNameDiv.setAttribute('role', 'alert');
+	metreNameDiv.textContent = (isPerfect ? '' : 'possibly ') + metreName;
     } else {
-	metreNameDiv.outerHTML = `<div class="metreName alert alert-danger" role="alert">Unknown metre</div>`;
+	metreNameDiv.className = 'metreName alert alert-danger';
+	metreNameDiv.setAttribute('role', 'alert');
+	metreNameDiv.textContent = 'Unknown metre';
     }
 
-    // The LHS: Just from the input
+    // The LHS: Just from the input. (textContent, not innerHTML: the verse is
+    // user-submitted text echoed back by /fulltextAPI; .lhsOrig is pre-wrap,
+    // so line breaks still render.)
     let lhs = document.createElement('div');
     lhs.classList.add('lhsOrig');
-    lhs.innerHTML = verseLines;
+    lhs.textContent = verseLines;
     lhs.style.gridRow = 2;
     lhs.style.gridColumn = 1;
     v.appendChild(lhs);
@@ -150,9 +156,11 @@ async function makeMetricalAnalysis(res) {
     rhs.style.gridRow = 2;
     rhs.style.gridColumn = 2;
     if (table) {
-	for (let line of table) {
-	    rhs.innerHTML += line;
-	}
+	// table lines are server-authored HTML (display.HtmlTableFromAlignment);
+	// user-derived syllable text is html.escape()d server-side, so this
+	// parses only trusted markup. Single assignment avoids re-parsing on
+	// each +=.
+	rhs.innerHTML = table.join('');
     }
     v.appendChild(rhs);
     return v;
